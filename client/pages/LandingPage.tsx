@@ -201,7 +201,7 @@ const LandingPage: React.FC = () => {
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
                                                 placeholder="name@example.com"
-                                                className="bg-glass-input border-glass-border text-foreground placeholder:text-muted focus-visible:ring-primary/50 focus-visible:border-primary/50 h-12 rounded-xl transition-all"
+                                                className="bg-glass-input border-glass-border text-black placeholder:text-gray-400 focus-visible:ring-primary/50 focus-visible:border-primary/50 h-12 rounded-xl transition-all"
                                                 required
                                             />
                                         </div>
@@ -214,7 +214,7 @@ const LandingPage: React.FC = () => {
                                                     value={password}
                                                     onChange={(e) => setPassword(e.target.value)}
                                                     placeholder="••••••••"
-                                                    className="bg-glass-input border-glass-border text-foreground placeholder:text-muted focus-visible:ring-primary/50 focus-visible:border-primary/50 h-12 rounded-xl transition-all pr-12"
+                                                    className="bg-glass-input border-glass-border text-black placeholder:text-gray-400 focus-visible:ring-primary/50 focus-visible:border-primary/50 h-12 rounded-xl transition-all pr-12"
                                                     required
                                                 />
                                                 <button

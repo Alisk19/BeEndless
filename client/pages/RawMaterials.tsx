@@ -94,7 +94,7 @@ const RawMaterials: React.FC = () => {
         materialColor: m.materialColor || '',
         icon: getIconForType(m.materialType)
       }));
-      setMaterials(mappedMaterials);
+      setMaterials(mappedMaterials.reverse());
 
       // Calc Stats
       const dealers = new Set(mappedMaterials.map((m: any) => m.dealerName)).size;
@@ -172,6 +172,17 @@ const RawMaterials: React.FC = () => {
     } catch (error) {
       console.error("Failed to save material", error);
       alert("Failed to save material.");
+    }
+  };
+
+  const handleDeleteMaterial = async (id: string) => {
+    if (window.confirm("Are you sure you want to delete this material record?")) {
+      try {
+        await deleteDocument('raw-materials', id);
+      } catch (error) {
+        console.error("Error deleting material", error);
+        alert("Failed to delete the material.");
+      }
     }
   };
 
@@ -698,6 +709,9 @@ const RawMaterials: React.FC = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-muted">{item.paidBy}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <button onClick={() => handleDeleteMaterial(item.id)} className="text-muted hover:text-red-500 transition-colors p-1 mr-2" title="Delete Record">
+                            <span className="material-icons text-sm">delete</span>
+                          </button>
                           <button onClick={() => handleEditClick(item)} className="text-muted hover:text-primary transition-colors p-1" title="Edit Record">
                             <span className="material-icons text-sm">edit</span>
                           </button>

@@ -56,7 +56,7 @@ const PersonalExpenses: React.FC = () => {
         date: e.date || new Date().toISOString().split('T')[0],
         notes: e.notes || ''
       }));
-      setExpenses(mappedExpenses);
+      setExpenses(mappedExpenses.reverse());
       setLoading(false);
     });
 

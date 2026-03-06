@@ -68,7 +68,7 @@ const Customers: React.FC = () => {
         avatarLetter: c.name ? c.name.charAt(0).toUpperCase() : '?'
       };
     });
-    setCustomers(mappedCustomers);
+    setCustomers(mappedCustomers.reverse());
     if (customersRaw.length > 0) setLoading(false);
   }, [customersRaw, ordersRaw]);
 

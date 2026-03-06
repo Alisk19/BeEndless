@@ -88,7 +88,8 @@ const Orders: React.FC = () => {
           deliveryDate: o.deliveryDate || ''
         };
       });
-      setOrders(mappedOrders.reverse());
+      mappedOrders.sort((a, b) => new Date(b._rawDate).getTime() - new Date(a._rawDate).getTime());
+      setOrders(mappedOrders);
       setLoading(false);
     });
 

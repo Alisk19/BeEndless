@@ -11,6 +11,7 @@ interface Customer {
   avatarLetter: string;
   contact?: string;
   notes?: string;
+  createdAt: string;
 }
 
 const Customers: React.FC = () => {
@@ -65,10 +66,12 @@ const Customers: React.FC = () => {
         totalOrders: customerOrders.length,
         totalRevenue: totalRevenue,
         lastOrderDate: lastOrderDate,
-        avatarLetter: c.name ? c.name.charAt(0).toUpperCase() : '?'
+        avatarLetter: c.name ? c.name.charAt(0).toUpperCase() : '?',
+        createdAt: c.createdAt || new Date(0).toISOString()
       };
     });
-    setCustomers(mappedCustomers.reverse());
+    mappedCustomers.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    setCustomers(mappedCustomers);
     if (customersRaw.length > 0) setLoading(false);
   }, [customersRaw, ordersRaw]);
 

@@ -16,6 +16,7 @@ interface Material {
   unitCost?: number; // Added for completeness with backend
   totalCost?: number;
   materialColor?: string;
+  createdAt: string;
 }
 
 interface UsageLog {
@@ -92,9 +93,11 @@ const RawMaterials: React.FC = () => {
         paymentStatus: m.paymentStatus,
         paidBy: m.paidBy,
         materialColor: m.materialColor || '',
-        icon: getIconForType(m.materialType)
+        icon: getIconForType(m.materialType),
+        createdAt: m.createdAt || new Date(0).toISOString()
       }));
-      setMaterials(mappedMaterials.reverse());
+      mappedMaterials.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setMaterials(mappedMaterials);
 
       // Calc Stats
       const dealers = new Set(mappedMaterials.map((m: any) => m.dealerName)).size;

@@ -9,6 +9,7 @@ interface Expense {
   amount: number;
   date: string;
   notes: string;
+  createdAt: string;
 }
 
 const EXPENSE_TYPES = ['Rent', 'Light Bill', 'Other'] as const;
@@ -54,9 +55,11 @@ const PersonalExpenses: React.FC = () => {
         expenseType: e.type || e.expenseType || 'Other',
         amount: parseFloat(e.amount) || 0,
         date: e.date || new Date().toISOString().split('T')[0],
-        notes: e.notes || ''
+        notes: e.notes || '',
+        createdAt: e.createdAt || new Date(0).toISOString()
       }));
-      setExpenses(mappedExpenses.reverse());
+      mappedExpenses.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setExpenses(mappedExpenses);
       setLoading(false);
     });
 
